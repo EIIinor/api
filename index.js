@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 // routes
 const productsController = require('./controllers/productsController')
 app.use('/api/products', productsController)
-app.use('/api/authentucation', require('./controllers/authenticationController'))
+// app.use('/api/authentucation', require('./controllers/authenticationController'))
 
 
 // initialize

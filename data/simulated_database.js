@@ -1,5 +1,5 @@
 // const products = [
-//     { tag: "eight" , articleNumber: "d3984cd9-f121-4981-8d03-83198d441379", name: "Black coat", description: "", category :"Coats", price :95, rating :4, imageName : "https://win22imgstorage.blob.core.windows.net/images/black-coat.png"},
+//     { tag: "eight" , articleNumber: "d3984cd9-f121-4981-8d03-83198d441379", name: "Black coat", description: "", category :"Coats", price :95, rating :4, imageName : "Black "},
 //     { tag: "eight" , articleNumber: "20222c00-4548-4149-9efd-49883e9f57b5", name: "Black dress", description: "", category :"Dresses", price :88, rating :5, imageName : "https://win22imgstorage.blob.core.windows.net/images/black-dress.png"},
 //     { tag: "eight" , articleNumber: "19173bb6-20e1-4f81-ae63-c969a23e794e", name: "Black top & pants set", description :"", category :"Sets", price :107, rating :3, imageName : "https://win22imgstorage.blob.core.windows.net/images/black-set.png"},
 //     { tag: "eight" , articleNumber: "4bf6d7af-aa33-455c-9403-8301ea13071c", name: "White top & black pants set", description :"", category :"Sets", price :115, rating :2, imageName : "https://win22imgstorage.blob.core.windows.net/images/black-white-set.png"},

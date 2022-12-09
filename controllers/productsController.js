@@ -134,10 +134,26 @@ controller.route('/:articleNumber').delete(async (req, res) => {
 })
 
 
-// gör en update 
+controller.route('/:articleNumber').put(async (req, res) => {
+    if(req.product != undefined) {
+        products.forEach(product => {
+            if (product.articleNumber == request.product.articleNumber) {
+                product.articleNumber = request.body.articleNumber ? request.body.articleNumber : product.articleNumber
+                product.name = request.body.name ? request.body.name : product.name
+                product.price = request.body.price ? request.body.price : product.price
+                product.category = request.body.category ? request.body.category : product.category
+                product.imageName = request.body.imageName ? request.body.imageName : product.imageName
+                product.description = request.body.description ? request.body.description : product.description
+            }
+        })
+        res.status(200).json(req.product)
+    }
+    else
+    res.status(404).json()
+})
 
 
-
+module.exports = controller
 
 
 /*
@@ -227,6 +243,3 @@ controller.route("/details/:articleNumber")
 })
 
 */
-
-
-module.exports = controller
