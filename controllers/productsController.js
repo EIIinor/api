@@ -135,21 +135,18 @@ controller.route('/:articleNumber').delete(async (req, res) => {
 
 
 controller.route('/:articleNumber').put(async (req, res) => {
-    if(req.product != undefined) {
-        products.forEach(product => {
-            if (product.articleNumber == request.product.articleNumber) {
-                product.articleNumber = request.body.articleNumber ? request.body.articleNumber : product.articleNumber
-                product.name = request.body.name ? request.body.name : product.name
-                product.price = request.body.price ? request.body.price : product.price
-                product.category = request.body.category ? request.body.category : product.category
-                product.imageName = request.body.imageName ? request.body.imageName : product.imageName
-                product.description = request.body.description ? request.body.description : product.description
-            }
-        })
-        res.status(200).json(req.product)
+    const { articleNumber, name, descpiption, price, tag, imageName, category, rating } = req.body
+    const updatedProduct = ({ articleNumber, name, descpiption, price, tag, imageName, category, rating })
+
+    const productExist = await productSchema.findById(req.params.articleNumber)
+    if (productExist) {
+        const updatedProduct = await productSchema.updateOne({ _id: req.params.articleNumber}, updatedProduct)
+        if (updatedProduct)
+            res.status(200).json({text: 'product ${name} with article number ${articleNumber} was updated '})
+        else
+            res.status(400).json({text: 'something went wrong'})
     }
-    else
-    res.status(404).json()
+    return (updatedProduct)
 })
 
 
