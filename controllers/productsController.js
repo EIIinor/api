@@ -123,9 +123,9 @@ controller.route('/:articleNumber').delete(async (req, res) => {
     if(!req.params.articleNumber)
         res.status(400).json({text:'no article number was specified'})
     else {
-        const item = await productSchema.findById(req.params.articleNumber)
+        const item = await productSchema.findById(req.params.articleNumber,)
         if (item) {
-            await productSchema.remove(item)
+            await productSchema.deleteOne(item,  {new:true})
             res.status(200).json({text: `product with article number ${req.params.articleNumber} was deleted`})
         } else {
             res.status(404).json({text: `product with article number ${req.params.articleNumber} was not found`})
@@ -136,17 +136,17 @@ controller.route('/:articleNumber').delete(async (req, res) => {
 
 controller.route('/:articleNumber').put(async (req, res) => {
     const { articleNumber, name, descpiption, price, tag, imageName, category, rating } = req.body
-    const updatedProduct = ({ articleNumber, name, descpiption, price, tag, imageName, category, rating })
+    if(!req.params.articleNumber)
+        res.status(400).json({text:'no article number was specified'})
 
-    const productExist = await productSchema.findById(req.params.articleNumber)
-    if (productExist) {
-        const updatedProduct = await productSchema.updateOne({ _id: req.params.articleNumber}, updatedProduct)
-        if (updatedProduct)
-            res.status(200).json({text: 'product ${name} with article number ${articleNumber} was updated '})
-        else
-            res.status(400).json({text: 'something went wrong'})
+    else {
+        const product = await productSchema.findByIdAndUpdate(req.params.articleNumber, req.body, {new:true})
+
+        if (!product) {
+            return res.status(404).json({text: ' product not found '})
+        }
+            res.status(200).json(product, {text: 'updated'})
     }
-    return (updatedProduct)
 })
 
 
