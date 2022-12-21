@@ -1,5 +1,6 @@
 const { json } = require('express')
 const express = require('express')
+const { update } = require('../schemas/productSchema')
 const productSchema = require('../schemas/productSchema')
 const controller = express.Router()
 // let products = require('../data/simulated_database')
@@ -145,12 +146,46 @@ controller.route('/:articleNumber').put(async (req, res) => {
         if (!product) {
             return res.status(404).json({text: ' product not found '})
         }
-            res.status(200).json(product, {text: 'updated'})
+            res.status(200).json(product)
     }
 })
 
 
+
+
+//     const updatedProduct = await productSchema.findByIdAndUpdate(req.params.articleNumber, updatedProduct, {new:true})
+//         const productExist = await productSchema.findById(req.params.articleNumber)
+//         if (productExist) {
+//             const updateProduct = await productSchema.updateOne({_id: req.params.articleNumber}, updatedProduct)
+//             if (updateProduct)
+//                 res.status(200).json({text: 'updated'})
+//             else 
+//                 res.status(400).json({text: 'something went wrong'})
+//         }
+//         return (updatedProduct)
+// })
+
+
+
+
+//     const id = req.params.articleNumber
+//     const updates = req.body
+//     const product = await productSchema.findByIdAndUpdate(id, updates, { new:true })
+    
+//         if (product) 
+//             res.status(200).json(product)
+//         else 
+//             res.status(404).json({text: 'something went wrong'})
+
+// })
+
+
+
 module.exports = controller
+
+
+
+
 
 
 /*
